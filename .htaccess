@@ -1,0 +1,11 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} /(.*)/$
+RewriteRule ^ /%1 [R=301,L]
+
+RewriteRule ^view/(.+)/?$ view.php?slug=$1 [QSA]
+RewriteRule ^view2/(.+)/(.+)$ view2.php?id=$1&title=$2 [QSA] -d
+
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
